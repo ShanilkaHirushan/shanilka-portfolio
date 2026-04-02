@@ -13,7 +13,7 @@ export default function Footer() {
           </p>
           <p className="text-dark-muted mt-2 text-sm">{PERSONAL_INFO.title}</p>
         </div>
-        
+
         <div className="flex space-x-6 items-center mb-4 md:mb-0">
           <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="text-dark-muted hover:text-brand-primary transition-colors">
             <Github size={20} />
@@ -25,10 +25,9 @@ export default function Footer() {
             <Mail size={20} />
           </a>
         </div>
-        
+
         <div className="text-dark-muted text-sm flex flex-col items-end">
           <p>&copy; {new Date().getFullYear()} {PERSONAL_INFO.name}. All rights reserved.</p>
-          <p className="text-xs mt-1">Built with React & Tailwind</p>
         </div>
       </div>
     </footer>

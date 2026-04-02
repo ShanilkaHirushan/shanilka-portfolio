@@ -14,7 +14,7 @@ const DEFAULT = {
   about: { paragraphs: ["I'm a Software Developer who loves building on the internet.", "Clean code. Elegant design. Precise execution."], terminal: ['Web Development', 'System Design', 'Open Source'] },
   skills: [{ name: 'Frontend', desc: 'React, Next.js, TypeScript', level: 90, icon: '⚛️' }, { name: 'Backend', desc: 'Node.js, Python, REST APIs', level: 85, icon: '🛠️' }, { name: 'Databases', desc: 'PostgreSQL, MongoDB, Redis', level: 80, icon: '🗄️' }, { name: 'Cloud & DevOps', desc: 'AWS, Docker, CI/CD', level: 75, icon: '☁️' }],
   projects: [{ num: '01', title: 'Project Alpha', desc: 'Full-stack web application with real-time features.', tags: ['React', 'Node.js', 'PostgreSQL'], demo: '#', github: '#' }, { num: '02', title: 'API Gateway', desc: 'High-performance microservices gateway.', tags: ['Python', 'FastAPI', 'Redis'], demo: '#', github: '#' }, { num: '03', title: 'DevDash CLI', desc: 'Developer productivity CLI tool.', tags: ['TypeScript', 'CLI'], demo: '#', github: '#' }],
-  contact: { email: 'you@email.com', github: 'github.com/yourname', linkedin: 'linkedin.com/in/yourname' },
+  contact: { email: 'shanilka13hirushan@gmail.com', github: 'https://github.com/ShanilkaHirushan', linkedin: 'www.linkedin.com/in/shanilka-hirushan' },
 };
 
 function useReveal() {
@@ -26,7 +26,7 @@ function useReveal() {
         }
       });
     }, { threshold: 0.1 });
-    
+
     // Slight delay to allow DOM to render before observing
     setTimeout(() => {
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));

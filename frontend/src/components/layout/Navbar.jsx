@@ -27,7 +27,8 @@ export default function Navbar() {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-3' : 'py-5 bg-transparent'}`}>
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="flex items-center justify-between">
-          <a href="#home" className="text-2xl font-bold font-sans tracking-tight">
+          <a href="#home" className="flex items-center gap-2.5 text-2xl font-bold font-sans tracking-tight">
+            <img src="/favicon.png" alt="SH Logo" className="w-8 h-8 rounded-lg" />
             Shanilka<span className="text-brand-primary">.</span>
           </a>
 

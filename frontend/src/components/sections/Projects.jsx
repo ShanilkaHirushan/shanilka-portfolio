@@ -43,7 +43,13 @@ export default function Projects() {
                   </div>
                 </div>
                 
-                <h3 className="text-xl font-bold mb-3 hover:text-brand-primary transition-colors cursor-pointer">{project.title}</h3>
+                <h3 className="text-xl font-bold hover:text-brand-primary transition-colors cursor-pointer">{project.title}</h3>
+                
+                <div className="flex flex-col space-y-1 my-3 text-sm">
+                  {project.role && <span className="font-semibold text-brand-secondary">{project.role}</span>}
+                  {project.date && <span className="text-brand-primary/80 font-mono text-xs">{project.date}</span>}
+                </div>
+
                 <p className="text-dark-muted text-sm leading-relaxed mb-6 flex-grow">{project.description}</p>
                 
                 <div className="pt-4 flex flex-wrap gap-2 text-xs font-mono text-dark-muted">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../../data/constants';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download, Mail, Phone } from 'lucide-react';
+import { Github, Linkedin } from '../common/Icons';
 
 export default function Hero() {
   const [roles] = useState([
@@ -45,7 +46,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-              Hi, I'm <br />
+              Hello, I'm <br />
               <span className="text-gradient">{PERSONAL_INFO.name}</span>
             </h1>
 
@@ -55,13 +56,39 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4 pt-4">
-              <a href="#projects" className="inline-flex items-center justify-center space-x-2 bg-brand-primary hover:brightness-110 text-white px-8 py-3.5 rounded-lg font-medium transition-all shadow-lg shadow-brand-primary/20 hover:shadow-brand-primary/40 hover:-translate-y-1">
-                <span>View Projects</span>
-                <ArrowRight size={18} />
+              {/* Download CV pill button */}
+              <a
+                href="/MDSH Menikpura_Full Stack_Developer_Internship_CV.pdf"
+                download
+                className="inline-flex items-center gap-2 border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 shadow-sm shadow-brand-primary/20"
+              >
+                <Download size={15} />
+                <span className="tracking-wide">DOWNLOAD CV</span>
               </a>
-              <a href="#contact" className="inline-flex items-center justify-center space-x-2 bg-transparent hover:bg-dark-border border border-dark-border hover:border-dark-muted text-dark-text px-8 py-3.5 rounded-lg font-medium transition-all hover:-translate-y-1">
-                <span>Contact Me</span>
-              </a>
+
+              {/* Social icon buttons */}
+              <div className="flex items-center gap-3">
+                <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer"
+                  className="w-10 h-10 rounded-full border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <Github size={18} />
+                </a>
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer"
+                  className="w-10 h-10 rounded-full border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <Linkedin size={18} />
+                </a>
+                <a href={`mailto:${PERSONAL_INFO.email}`}
+                  className="w-10 h-10 rounded-full border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <Mail size={18} />
+                </a>
+                <a href={`tel:${PERSONAL_INFO.phone}`}
+                  className="w-10 h-10 rounded-full border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <Phone size={18} />
+                </a>
+              </div>
             </div>
           </motion.div>
 
@@ -99,6 +126,16 @@ export default function Hero() {
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-6 h-6 animate-[spin_10s_linear_infinite]" />
                 <span className="text-sm font-semibold">React exp</span>
               </motion.div>
+
+              {/* <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-6 left-16 glass px-4 py-2 rounded-lg flex items-center space-x-2"
+              >
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" className="w-6 h-6 rounded" />
+                <span className="text-sm font-semibold">JS Mastery</span>
+              </motion.div> */}
+
             </div>
 
           </motion.div>
