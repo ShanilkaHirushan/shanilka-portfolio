@@ -22,7 +22,7 @@ router.post('/',
     if (!errors.isEmpty())
       return res.status(400).json({ errors: errors.array() });
 
-    const { name, email, message } = req.body;
+    const { name, email, subject, message } = req.body;
     try {
       // Save to DB
       const contact = await Contact.create({ name, email, message, ip: req.ip });
@@ -105,7 +105,7 @@ router.post('/',
                     font-weight: 700;
                     margin: 0 0 8px 0;
                     letter-spacing: -0.5px;
-                  ">Message Received! 🎉</h1>
+                  ">Message Received!</h1>
 
                   <p style="
                     color: #14b891;
@@ -262,7 +262,7 @@ router.post('/',
                             </td>
                             <!-- LinkedIn Button -->
                             <td style="padding: 0 0 0 8px;">
-                              <a href="https://linkedin.com/in/shanilkahirushan"
+                              <a href="https://www.linkedin.com/in/shanilka-hirushan"
                                 style="
                                   display: inline-block;
                                   background: transparent;
@@ -358,7 +358,7 @@ router.post('/',
                             font-family: 'Courier New', monospace;
                           ">GitHub</a>
                         <span style="color: #1e3a30;">|</span>
-                        <a href="https://linkedin.com/in/shanilkahirushan"
+                        <a href="https://www.linkedin.com/in/shanilka-hirushan"
                           style="
                             color: #5a8a7a;
                             text-decoration: none;
