@@ -19,7 +19,7 @@ export default function Contact() {
     try {
       await axios.post(
         `${API_URL}/api/contact`,
-        form,
+        formData,
         {
           timeout: 60000,
           headers: { 'Content-Type': 'application/json' },
@@ -27,10 +27,21 @@ export default function Contact() {
       );
 
       setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', message: '' });
 
     } catch (error) {
-      console.error('Error:', error?.response?.data || error.message);
+      let message = 'Something went wrong. Please try again.';
+
+      if (error?.response?.data?.errors) {
+        message = error.response.data.errors.map(err => err.msg).join(', ');
+      } else if (error?.response?.data?.message) {
+        message = error.response.data.message;
+      } else if (error.message) {
+        message = error.message;
+      }
+
+      console.error('Contact Form Error:', message);
+      setErrorMsg(message);
       setStatus('error');
     }
   };
