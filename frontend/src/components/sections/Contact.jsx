@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { PERSONAL_INFO } from '../../data/constants';
 import { Send, MapPin, Mail, Phone, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import axios from 'axios';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
