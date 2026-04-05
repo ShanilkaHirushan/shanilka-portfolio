@@ -11,24 +11,26 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    setErrorMsg('');
+
+    const API_URL = process.env.REACT_APP_API_URL
+      || 'http://localhost:5000';
+
     try {
-      const res = await fetch('http://localhost:5000/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-        setErrorMsg(data?.errors?.[0]?.msg || data?.error || 'Something went wrong.');
-      }
-    } catch (err) {
+      await axios.post(
+        `${API_URL}/api/contact`,
+        form,
+        {
+          timeout: 60000,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+
+      setStatus('success');
+      setForm({ name: '', email: '', subject: '', message: '' });
+
+    } catch (error) {
+      console.error('Error:', error?.response?.data || error.message);
       setStatus('error');
-      setErrorMsg('Could not connect to server. Please try again later.');
     }
   };
 
@@ -164,62 +166,62 @@ export default function Contact() {
                 </motion.button>
               </motion.div>
             ) : (
-            <form onSubmit={handleSubmit} className="glass p-8 rounded-3xl space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-dark-muted">Your Name</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-dark-muted">Email Address</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={e => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-dark-muted">Message</label>
-                <textarea
-                  rows={4}
-                  value={formData.message}
-                  onChange={e => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white resize-none"
-                  placeholder="Hello Shanilka..."
-                  required
-                />
-              </div>
-
-              {status === 'error' && (
-                <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400">
-                  <AlertCircle size={20} />
-                  <span className="text-sm font-medium">{errorMsg}</span>
+              <form onSubmit={handleSubmit} className="glass p-8 rounded-3xl space-y-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-dark-muted">Your Name</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white"
+                    placeholder="John Doe"
+                    required
+                  />
                 </div>
-              )}
 
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full bg-brand-primary hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
-              >
-                {status === 'loading' ? (
-                  <><Loader size={18} className="animate-spin" /><span>Sending...</span></>
-                ) : (
-                  <><span>Send Message</span><Send size={18} /></>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-dark-muted">Email Address</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-dark-muted">Message</label>
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={e => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-dark-bg border border-dark-border rounded-xl px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-white resize-none"
+                    placeholder="Hello Shanilka..."
+                    required
+                  />
+                </div>
+
+                {status === 'error' && (
+                  <div className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400">
+                    <AlertCircle size={20} />
+                    <span className="text-sm font-medium">{errorMsg}</span>
+                  </div>
                 )}
-              </button>
-            </form>
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full bg-brand-primary hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed text-white py-4 rounded-xl font-semibold transition-all flex items-center justify-center gap-2"
+                >
+                  {status === 'loading' ? (
+                    <><Loader size={18} className="animate-spin" /><span>Sending...</span></>
+                  ) : (
+                    <><span>Send Message</span><Send size={18} /></>
+                  )}
+                </button>
+              </form>
             )}
           </motion.div>
         </div>
